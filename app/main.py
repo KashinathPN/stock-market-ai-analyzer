@@ -1,0 +1,1 @@
+print("Stock Market AI Analyzer is starting...")
