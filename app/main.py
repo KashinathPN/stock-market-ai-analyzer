@@ -1,6 +1,8 @@
 import yfinance as yf
 
-stock = yf.Ticker("AAPL")
+symbol = input("Enter stock symbol: ")
+
+stock = yf.Ticker(symbol)
 
 info = stock.info
 
