@@ -1,5 +1,7 @@
 import yfinance as yf
 
+WATCHLIST = ["AAPL", "MSFT", "GOOGL", "TSLA", "INFY"]
+
 def get_stock_data(symbol):
     stock = yf.Ticker(symbol)
     info = stock.info
@@ -44,7 +46,6 @@ def compare_stocks(symbols):
     print("=" * 60)
     print(f"{'Symbol':<8} {'Latest':>8} {'MA20':>8} {'MA50':>8} {'Change%':>10} {'Trend':>6}")
     print("-" * 60)
-
     for symbol in symbols:
         try:
             info, history = get_stock_data(symbol)
@@ -54,13 +55,21 @@ def compare_stocks(symbols):
             print(f"{symbol:<8} ${latest:>7} ${ma20:>7} ${ma50:>7} {pct_change:>9}% {direction:>6}")
         except Exception:
             print(f"{symbol:<8} Could not fetch data")
-
     print("=" * 60)
 
+def show_watchlist():
+    print("\nRunning your watchlist...")
+    compare_stocks(WATCHLIST)
+
 def main():
+    print("=" * 40)
+    print("   STOCK MARKET AI ANALYZER")
+    print("=" * 40)
     print("1. Single Stock Analysis")
     print("2. Compare Multiple Stocks")
-    choice = input("Choose (1 or 2): ")
+    print("3. Show My Watchlist")
+    print("=" * 40)
+    choice = input("Choose (1, 2 or 3): ")
 
     if choice == "1":
         symbol = input("Enter stock symbol: ").upper()
@@ -73,7 +82,10 @@ def main():
             print("Sorry, could not find stock:", symbol)
 
     elif choice == "2":
-        symbols = input("Enter symbols separated by comma (e.g. AAPL,TSLA,MSFT): ").upper().split(",")
+        symbols = input("Enter symbols separated by comma: ").upper().split(",")
         compare_stocks(symbols)
+
+    elif choice == "3":
+        show_watchlist()
 
 main()
