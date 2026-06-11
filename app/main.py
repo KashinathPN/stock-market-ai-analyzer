@@ -4,16 +4,18 @@ symbol = input("Enter stock symbol: ")
 
 stock = yf.Ticker(symbol)
 
-info = stock.info
-
 try:
-    print("Company  :", info['longName'])
-    print("Price    :", info['currentPrice'])
-    print("Currency :", info['currency'])
-    print("Market Cap:", info['marketCap'])
-    print("52W High :", info['fiftyTwoWeekHigh'])
-    print("52W Low  :", info['fiftyTwoWeekLow'])
+    history = stock.history(period="1mo")
 
-except KeyError:
+    close_prices = history['Close']
+
+    print("Stock :", symbol)
+    print("Highest price this month :", round(close_prices.max(), 2))
+    print("Lowest price this month  :", round(close_prices.min(), 2))
+    print("Average price this month :", round(close_prices.mean(), 2))
+    clean_prices = close_prices.dropna()
+    print("Latest closing price     :", round(clean_prices.iloc[-1], 2))
+
+except Exception:
     print("Sorry, could not find stock:", symbol)
     print("Please check the symbol and try again.")
