@@ -62,30 +62,39 @@ def show_watchlist():
     compare_stocks(WATCHLIST)
 
 def main():
-    print("=" * 40)
-    print("   STOCK MARKET AI ANALYZER")
-    print("=" * 40)
-    print("1. Single Stock Analysis")
-    print("2. Compare Multiple Stocks")
-    print("3. Show My Watchlist")
-    print("=" * 40)
-    choice = input("Choose (1, 2 or 3): ")
+    while True:
+        print("=" * 40)
+        print("   STOCK MARKET AI ANALYZER")
+        print("=" * 40)
+        print("1. Single Stock Analysis")
+        print("2. Compare Multiple Stocks")
+        print("3. Show My Watchlist")
+        print("4. Quit")
+        print("=" * 40)
+        choice = input("Choose (1, 2, 3 or 4): ")
 
-    if choice == "1":
-        symbol = input("Enter stock symbol: ").upper()
-        try:
-            info, history = get_stock_data(symbol)
-            close_prices  = history['Close'].dropna()
-            highest, lowest, average, latest, ma20, ma50, start_price, price_change, pct_change = analyze_prices(close_prices)
-            print_report(symbol, info['longName'], highest, lowest, average, latest, ma20, ma50, start_price, price_change, pct_change)
-        except Exception:
-            print("Sorry, could not find stock:", symbol)
+        if choice == "1":
+            symbol = input("Enter stock symbol: ").upper()
+            try:
+                info, history = get_stock_data(symbol)
+                close_prices  = history['Close'].dropna()
+                highest, lowest, average, latest, ma20, ma50, start_price, price_change, pct_change = analyze_prices(close_prices)
+                print_report(symbol, info['longName'], highest, lowest, average, latest, ma20, ma50, start_price, price_change, pct_change)
+            except Exception:
+                print("Sorry, could not find stock:", symbol)
 
-    elif choice == "2":
-        symbols = input("Enter symbols separated by comma: ").upper().split(",")
-        compare_stocks(symbols)
+        elif choice == "2":
+            symbols = input("Enter symbols separated by comma: ").upper().split(",")
+            compare_stocks(symbols)
 
-    elif choice == "3":
-        show_watchlist()
+        elif choice == "3":
+            show_watchlist()
+
+        elif choice == "4":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please choose 1, 2, 3 or 4.")
 
 main()
