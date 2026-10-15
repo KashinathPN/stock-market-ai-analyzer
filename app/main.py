@@ -30,7 +30,7 @@ def print_report(symbol, company, highest, lowest, average, latest, ma20, ma50, 
     print("-" * 40)
     print("Highest :", "$" + str(highest))
     print("Lowest  :", "$" + str(lowest))
-    print("Average :", "$" + str(average))
+    print("Average :", "$" + str(average)).\venv\Scripts\activate
     print("Latest  :", "$" + str(latest))
     print("MA20    :", "$" + str(ma20))
     print("MA50    :", "$" + str(ma50))
@@ -38,6 +38,14 @@ def print_report(symbol, company, highest, lowest, average, latest, ma20, ma50, 
     print("Start of Year :", "$" + str(start_price))
     print("Change        :", direction, "$" + str(price_change))
     print("Change %      :", direction, str(pct_change) + "%")
+    print("-" * 40)
+    if latest > ma50 and latest > ma20:
+        signal = "🟢 BUY"
+    elif latest < ma50 and latest < ma20:
+        signal = "🔴 SELL"
+    else:
+        signal = "🟡 HOLD"
+    print("Signal  :", signal)
     print("=" * 40)
 
 def compare_stocks(symbols):

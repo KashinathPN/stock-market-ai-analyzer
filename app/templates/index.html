@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Market AI Analyzer</title>
+</head>
+<body style="background:#0f0f0f; color:white; text-align:center; padding:100px; font-family:Arial;">
+    <h1 style="color:#1D9E75;">📈 Stock Market AI Analyzer</h1>
+    <p>Enter a stock symbol to get real-time analysis</p>
+    <form method="POST" action="/analyze">
+        <input type="text" name="symbol" placeholder="e.g. AAPL"
+               style="padding:12px; font-size:1rem; border:2px solid #1D9E75;
+                      border-radius:8px; background:#1a1a1a; color:white; width:250px;">
+        <button type="submit"
+                style="padding:12px 24px; font-size:1rem; background:#1D9E75;
+                       color:white; border:none; border-radius:8px; cursor:pointer; margin-left:10px;">
+            Analyze
+        </button>
+    </form>
+</body>
+</html>
