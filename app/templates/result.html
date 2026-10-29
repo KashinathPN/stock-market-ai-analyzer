@@ -49,6 +49,16 @@
                     {% endif %}
                 </td>
             </tr>
+            <tr style="background:#1a1a1a;">
+                <td style="padding:12px; color:#888780;">ML Prediction</td>
+                <td style="padding:12px; color:white;">${{ data.prediction }}</td>
+            </tr>
+            <tr>
+                <td style="padding:12px; color:#888780;">Expected Change</td>
+                <td style="padding:12px; color:white;">
+                    {{ data.pred_direction }} ${{ data.pred_change }}
+                </td>
+            </tr>
         </table>
 
         <br>
